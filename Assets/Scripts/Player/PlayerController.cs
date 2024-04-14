@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public bool _waterHad;
     [SerializeField] float WaterFadeSpeed;
     float _nowWaterFade;
+
+    [SerializeField] GameObject Bucket, Timer;
+    [SerializeField] TextMeshProUGUI text;
 
     void Start()
     {
@@ -22,16 +26,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        text.text = (int)_nowWaterFade + "";
         Animations();
         _rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * _speed;
         if (_waterHad && _nowWaterFade > 0)
         {
+            Bucket.SetActive(true);
+            Timer.SetActive(true);
             _nowWaterFade -= Time.deltaTime;
-            //Р°РЅРёРјРєР° СЃ РІРµРґСЂРѕРј
+            //анимка с ведром
         }
         else
         {
-            //Р°РЅРёРјРєР° Р±РµР· РІРµРґСЂР°
+            Timer.SetActive(false);
+            Bucket.SetActive(false);
+            //анимка без ведра
             _waterHad = false;
             _nowWaterFade = WaterFadeSpeed;
         }

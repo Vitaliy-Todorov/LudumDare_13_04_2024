@@ -74,7 +74,8 @@ public class ObjToGive : MonoBehaviour
 
     private void Reset()
     {
-        Bucket.SetActive(true);
+        if(_count < HowManyCountNeed)
+            Bucket.SetActive(true);
         _panelToWater.SetActive(false);
     }
 
@@ -115,7 +116,7 @@ public class ObjToGive : MonoBehaviour
                 if (_playerStay && _gameController.PlayerController._waterHad)
                 {
                     //print("mw");
-                    if (Input.GetButtonDown("Use") && _gameController.PlayerController._waterHad)
+                    if (Input.GetButtonDown("Use"))
                     {
                         _waterNow += _gameController.WaterWeight;
                         _gameController.PlayerController._waterHad = false;

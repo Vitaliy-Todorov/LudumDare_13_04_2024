@@ -6,9 +6,13 @@ using TMPro;
 public class TreeNeeds : MonoBehaviour
 {
     bool _playerStay, _doIt;
+
+    public bool corupted;
+    public int countCorupted;
+
     GameController _gameController;
 
-    public Sprite[] TreeSprite;
+    public Sprite[] TreeSprite, TreeSpriteCorupted, SpriteDead;
     [SerializeField] int[] PoopNeed, BerryNeed;
     int _counter;
 
@@ -89,7 +93,17 @@ public class TreeNeeds : MonoBehaviour
             }
         }
 
-        if(BerryNeed[_counter] <= 0 && PoopNeed[_counter] <= 0)
+        if(countCorupted >= 1)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = TreeSpriteCorupted[_counter];
+        }
+        if(countCorupted > 2)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = SpriteDead[_counter];
+            //смерть
+        }
+
+        if (BerryNeed[_counter] <= 0 && PoopNeed[_counter] <= 0)
         {
             NextCount();
         }
@@ -110,6 +124,7 @@ public class TreeNeeds : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = TreeSprite[TreeSprite.Length - 1];
             PanelToSee.SetActive(false);
             _gameController.UseButton.SetActive(false);
+            _doIt = true;
         }
     }
 }
