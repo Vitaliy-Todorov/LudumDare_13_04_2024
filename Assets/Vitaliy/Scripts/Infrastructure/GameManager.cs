@@ -9,16 +9,16 @@ namespace Infrastructure
     {
         [SerializeField] 
         private EntityFactory _entityFactory;
-        [SerializeField] 
+        /*[SerializeField] 
         private CinemachineVirtualCamera _camera;
         [SerializeField] 
         private GameObject _hud;
         [SerializeField] 
-        private Transform _playerSpavnPoint;
+        private Transform _playerSpavnPoint;*/
         [SerializeField] 
         private Spawner _spawner;
-        [SerializeField]
-        private List<Item> _items;
+        /*[SerializeField]
+        private List<Item> _items;*/
 
         private DependencyInjection _container;
         private IInputSystem _inputSystem;
@@ -31,15 +31,12 @@ namespace Infrastructure
             StaticDataService staticDataService = _container.RegisterDependency(new StaticDataService());
             _entityFactory.Construct(_container, staticDataService);
             EntityFactory entityFactory = _container.RegisterDependency(_entityFactory);
-            entityFactory.CreatePlayer(_playerSpavnPoint.position, _camera);
+            // entityFactory.CreatePlayer(_playerSpavnPoint.position, _camera);
             WindowManager windowManager = _container.RegisterDependency(new WindowManager(_container, staticDataService, _inputSystem));
             _spawner.Construct(entityFactory, audioManager);
-            Hud hud = Instantiate(_hud).GetComponent<Hud>();
+            /*Hud hud = Instantiate(_hud).GetComponent<Hud>();
             hud.Construct(_container);
-            _container.RegisterDependency(hud);
-            
-            foreach (Item item in _items) 
-                item.Construct(windowManager);
+            _container.RegisterDependency(hud);*/
 
             windowManager.OpenWindow(typeof(GameMenu));
             windowManager.CloseWindow();

@@ -5,16 +5,7 @@ using UnityEngine;
 
 namespace Infrastructure
 {
-
-    /*public class Singl : MonoBehaviour
-    {
-        public static Transform Player { get; private set; }
-
-        private void Awake()
-        {
-            Player = transform;
-        }
-    }*/
+    [Serializable]
     public class EntityFactory
     {
         [field: SerializeField]

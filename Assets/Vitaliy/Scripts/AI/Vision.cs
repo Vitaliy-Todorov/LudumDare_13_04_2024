@@ -15,7 +15,7 @@ public class Vision : MoveToGoal
 
     private int _layerPlayer;
     private int _transparentLayers;
-    private Vector3 TransformPosition => _agent.transform.position;
+    private Vector3 TransformPosition => _rigidbody.transform.position;
 
     public override void Construct(DependencyInjection diContainer)
     {
@@ -32,6 +32,7 @@ public class Vision : MoveToGoal
 
         Vector2 direction = (_target.position - TransformPosition).normalized;
         RaycastHit2D hit = Physics2D.Raycast(_transform.position, direction, _distance, _transparentLayers);
+        Debug.DrawRay(_transform.position, direction * _distance, Color.green);
 
         if (hit.collider != null && hit.transform.gameObject.layer == _layerPlayer)
             return base.Condition();
