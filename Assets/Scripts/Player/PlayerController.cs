@@ -27,11 +27,11 @@ public class PlayerController : MonoBehaviour
         if (_waterHad && _nowWaterFade > 0)
         {
             _nowWaterFade -= Time.deltaTime;
-            //анимка с ведром
+            //Р°РЅРёРјРєР° СЃ РІРµРґСЂРѕРј
         }
         else
         {
-            //анимка без ведра
+            //Р°РЅРёРјРєР° Р±РµР· РІРµРґСЂР°
             _waterHad = false;
             _nowWaterFade = WaterFadeSpeed;
         }
