@@ -100,8 +100,19 @@ public class PentOfSummon : MonoBehaviour
 
         if (_summone)
         {
-            //телепорт и ресет после задания с ResetP 
-            _summone = false;
+            _gameController.PlayerController.GetComponent<SpriteRenderer>().enabled = false;
+            _gameController.PlayerController.enabled = false;
         }
+    }
+
+    IEnumerator Activate()
+    {
+        yield return new WaitForSeconds(5);
+
+        _gameController.CoruptedAll();
+        ResetP();
+        _summone = false;
+        _gameController.PlayerController.GetComponent<SpriteRenderer>().enabled = true;
+        _gameController.PlayerController.enabled = true;
     }
 }

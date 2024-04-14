@@ -100,7 +100,12 @@ public class TreeNeeds : MonoBehaviour
         if(countCorupted > 2)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = SpriteDead[_counter];
-            //смерть
+            _gameController.Loose();
+        }
+
+        if (_doIt)
+        {
+            _gameController.Win();
         }
 
         if (BerryNeed[_counter] <= 0 && PoopNeed[_counter] <= 0)
