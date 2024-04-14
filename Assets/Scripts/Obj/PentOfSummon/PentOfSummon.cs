@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class PentOfSummon : MonoBehaviour
 {
     GameController _gameController;
     [SerializeField] GameObject _pentogramToCreate;
+    public FirstDay fstD;
 
     float _randBtwSummon;
 
@@ -47,7 +50,17 @@ public class PentOfSummon : MonoBehaviour
 
     void TimeSet()
     {
-        _summonTimeNow = SummonTime;
+        if(fstD.count > 0)
+        {
+            _summonTimeNow = fstD.TimeToPent;
+            fstD.count--;
+            if(fstD.count <= 0)
+            {
+                fstD.FirstDayLater();
+            }
+        }
+        else
+            _summonTimeNow = SummonTime;
         _randBtwSummon = Random.Range(15, 30);
     }
 
