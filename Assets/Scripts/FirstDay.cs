@@ -9,6 +9,8 @@ public class FirstDay : MonoBehaviour
     [SerializeField] PlayerController _firstDay;
     public int count = 3;
 
+    public GameObject Diologue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class FirstDay : MonoBehaviour
 
     public void FirstDayLater()
     {
-
+        Diologue.SetActive(true);
     }
 
     // Update is called once per frame

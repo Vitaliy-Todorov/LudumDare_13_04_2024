@@ -5,6 +5,6 @@ public class WinSwitch : MonoBehaviour
 {
     public void Enter()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

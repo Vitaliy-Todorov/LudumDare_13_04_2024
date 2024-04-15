@@ -15,12 +15,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject Bucket, Timer;
     [SerializeField] TextMeshProUGUI text;
 
+    public SpawnEnemies spawnEnemies;
+
     void Start()
     {
         _nowWaterFade = WaterFadeSpeed;
 
         anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+            spawnEnemies.enemyCount--;
+        }
     }
 
     // Update is called once per frame
